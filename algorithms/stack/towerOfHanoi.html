@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>汉诺塔</title>
+  </head>
+  <body>
+    <!--  
+        从A移动到C
+        实现这个算法可以简单分为三个步骤：
+　　　　（1）把n-1个盘子由A 移到 B；
+　　　　（2）把第n个盘子由A移到 C；
+　　　　（3）把n-1个盘子由B 移到 C；
+    -->
+    <script src="../../dataStructures/stack/stackObject.js"></script>
+    <script>
+      var index = 0;
+      function hanoi(num, A, B, C) {
+        index++;
+        if (num == 1) {
+          //柱子只底下只有一个盘子
+          move(A, C);
+        } else {
+          //A的num-1个盘子通过C移动到B
+          hanoi(num - 1, A, C, B);
+          //A的最底下的盘子移动到C
+          move(A, C);
+          //B的盘子通过A移动到C
+          hanoi(num - 1, B, A, C);
+        }
+      }
+      function move(first, final) {
+        console.log("从", first, " 移动到 ", final);
+      }
+
+      hanoi(3, "第一根柱子", "第二根柱子", "第三根柱子");
+      console.log("一共移动了", index, "次");
+    </script>
+  </body>
+</html>

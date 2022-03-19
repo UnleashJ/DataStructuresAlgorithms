@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { Set } from "./set.js";
+      let set = new Set();
+      set.add(1);
+      set.add(2);
+      set.add(3);
+      set.add(4);
+      set.add(5);
+      console.log(set);
+      console.log(set.items);
+      console.log(Object.keys(set.items));
+      set.delete(4);
+      console.log(set.items);
+
+      let set2 = new Set();
+      set2.add(3);
+      set2.add(4);
+      set2.add(5);
+      set2.add(6);
+      set2.add(7);
+      set2.add(8);
+      set2.add(9);
+      set2.add(10);
+
+      let set3 = new Set();
+      set3.add(1);
+      set3.add(2);
+
+      let unionset = set.union(set2);
+      console.log(unionset);
+
+      let intersectionset = set.intersection(set2);
+      console.log(intersectionset);
+
+      console.log(set3.isSubsetOf(set));
+      console.log(set3.isSubsetOf(set2));
+    </script>
+
+    <script>
+      let set = new Set();
+      set.add(1);
+      set.add(2);
+      set.add(3);
+      set.add(4);
+      set.add(5);
+      console.log(set.values());
+      console.log(set.has(1));
+      console.log(set);
+    </script>
+  </body>
+</html>

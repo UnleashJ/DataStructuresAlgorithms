@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>利用栈实现汉诺塔（待完成）</title>
+  </head>
+  <body>
+    <!--  
+        从A移动到C
+        实现这个算法可以简单分为三个步骤：
+　　　　（1）把n-1个盘子由A 移到 B；
+　　　　（2）把第n个盘子由A移到 C；
+　　　　（3）把n-1个盘子由B 移到 C；
+    -->
+    <script src="../../dataStructures/stack/stackObject.js"></script>
+    <script>
+      let sourceStack = new StackObject();
+      let helpeStack = new StackObject();
+      let destStack = new StackObject();
+      // 每一步移动之后，三个柱子上的盘子
+      let moves = [];
+
+      function towerOfHanoi(n, sourceStack, helpeStack, destStack, moves) {
+        for (let index = 0; index < n; index++) {
+          sourceStack.push(index);
+        }
+
+        if (n == 1) {
+          let move = {
+            source: sourceStack.toString(),
+            helper: helpeStack.toString(),
+            dest: destStack.toString(),
+          };
+          moves.push(move);
+          destStack.push(sourceStack.pop());
+          move = {
+            source: sourceStack.toString(),
+            helper: helpeStack.toString(),
+            dest: destStack.toString(),
+          };
+          moves.push(move);
+        } else {
+          console.log("else")
+          towerOfHanoi(n - 1, sourceStack, destStack, helpeStack, moves);
+          towerOfHanoi(1, sourceStack, destStack, helpeStack, moves);
+        }
+      }
+
+      function movefun(stack1, stack2, stack3) {
+        let move = {
+          source: stack1.toString(),
+          helper: stack2.toString(),
+          dest: stack3.toString(),
+        };
+        moves.push(move);
+      }
+
+      towerOfHanoi(2, sourceStack, helpeStack, destStack, moves);
+      console.log(moves);
+    </script>
+  </body>
+</html>

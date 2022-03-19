@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>平衡括号</title>
+  </head>
+  <body>
+    <!-- 
+        题目描述：
+        给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+        有效字符串需满足：
+            1、左括号必须用相同类型的右括号闭合。
+            2、左括号必须以正确的顺序闭合。 
+    -->
+
+    <!--  
+        括号闭合原则也是后进先出，可以用栈。
+            将开始括号与结束括号分别定义成一个集合
+            若遇到开始括号则入栈，
+            遇到结束括号，先判断栈是否为空，若为空则返回false
+                若不为空，则将栈顶元素取出，判断与这个结束符号是不是一对，若不是则返回false
+    -->
+
+    <script src="../../dataStructures/stack/stackObject.js"></script>
+    <script>
+      function balancedSymbols(symbolString) {
+        let result = true;
+        let symbolStack = new StackObject();
+        const starts = "([{";
+        const ends = ")]}";
+        for (let i = 0; i < symbolString.length; i++) {
+          if (starts.indexOf(symbolString[i]) >= 0) {
+            // 当前符号是开始标签
+            symbolStack.push(symbolString[i]);
+          } else if (symbolStack.isEmpty()) {
+            result = false;
+            break;
+          } else {
+            // 当前符号是结束标签且栈不是空
+            let symbol = symbolStack.pop();
+            // 栈顶符号与当前符号在开始与结束符号集中的序号一样
+            if (!(starts.indexOf(symbol) === ends.indexOf(symbolString[i]))) {
+              result = false;
+              break;
+            }
+          }
+        }
+        // 必须保证栈是空的，不然后面的例子也会返回true{{{(((}}}
+        return result && symbolStack.isEmpty();
+      }
+
+      console.log("{([])}", balancedSymbols("{([])}")); // true
+      console.log("{{([][])}()}", balancedSymbols("{{([][])}()}")); // true
+      console.log("[{()]", balancedSymbols("[{()]")); // false
+      console.log("{{([)[])}()}", balancedSymbols("{{([)[])}()}")); // false
+    </script>
+  </body>
+</html>

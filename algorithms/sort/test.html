@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var isUnique = function (astr) {
+        let counts = {};
+        for (let char of astr) {
+          if (!counts[char]) {
+            counts[char] = 0;
+          }
+          counts[char]++
+        }
+        for (let key in counts) {
+          if (counts[key] > 1) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      console.log(isUnique('leetcode'))
+    </script>
+  </body>
+</html>

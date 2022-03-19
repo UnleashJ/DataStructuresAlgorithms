@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let graph = [
+        [0, 2, 4, 0, 0, 0],
+        [0, 0, 2, 4, 2, 0],
+        [0, 0, 0, 0, 3, 0],
+        [0, 0, 0, 0, 0, 2],
+        [0, 0, 0, 3, 0, 2],
+        [0, 0, 0, 0, 0, 0],
+      ];
+      function floyd(graph) {
+        let dist = [];
+        for (let i = 0; i < graph.length; i++) {
+          dist[i] = [];//二维数组里面那个也得初始化
+          for (let j = 0; j < graph.length; j++) {
+            if (i === j) {
+              dist[i][j] = 0;
+            } else if (graph[i][j] === 0) {
+              dist[i][j] = Infinity;
+            } else {
+              dist[i][j] = graph[i][j];
+            }
+          }
+        }
+
+        for (let k = 0; k < graph.length; k++) {
+          //k作为中间节点
+          for (let i = 0; i < graph.length; i++) {
+            //起点i
+            for (let j = 0; j < graph.length; j++) {
+              //终点j
+              if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                dist[i][j] = dist[i][k] + dist[k][j];
+              }
+            }
+          }
+        }
+        return dist;
+      }
+
+      console.log(floyd(graph));
+    </script>
+  </body>
+</html>

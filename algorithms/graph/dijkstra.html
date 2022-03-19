@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let graph = [
+        [0, 2, 4, 0, 0, 0],
+        [0, 0, 2, 4, 2, 0],
+        [0, 0, 0, 0, 3, 0],
+        [0, 0, 0, 0, 0, 2],
+        [0, 0, 0, 3, 0, 2],
+        [0, 0, 0, 0, 0, 0],
+      ];
+
+      function dijkstra(graph, src) {
+        //src是源节点，数字代表邻接矩阵的index
+        let dist = []; //存储源节点到各个几点间的距离
+        let visited = []; //确定的节点
+        for (let i = 0; i < graph.length; i++) {
+          dist[i] = Infinity; //初始化，源节点到所有节点最大距离为无穷
+          visited[i] = false; //初始化，每个节点都没有访问过
+        }
+        dist[src] = 0; //设置源节点到自己的距离为0
+        for (let i = 1; i < graph.length - 1; i++) {
+          //到倒数第二个节点，所有的距离就已经是最短距离，所以是graph.length - 1
+          let minIndex = getMinDisIndex(dist, visited); //获得源节点到其他未访问过的节点的距离中最小距离的index
+          visited[minIndex] = true; //设置当前过渡节点被访问过
+          for (let j = 0; j < graph.length; j++) {
+            // 给距离重新赋值，条件
+            // 当该节点未被访问，
+            // 且是过渡节点的相邻节点，
+            // 且源节点到过渡节点的距离不为无穷大（感觉这一条可以省略），
+            // 且通过过渡节点，源节点到该节点距离比之前小
+            if (
+              !visited[j] &&
+              graph[minIndex][j] !== 0 &&
+              dist[minIndex] !== Infinity &&
+              graph[minIndex][j] + dist[minIndex] < dist[j]
+            ) {
+              dist[j] = graph[minIndex][j] + dist[minIndex];
+            }
+          }
+        }
+        return dist;
+      }
+
+      function getMinDisIndex(dist, visited) {
+        let min = Infinity;
+        let minIndex = -1;
+        for (let i = 0; i < dist.length; i++) {
+          if (visited[i] === false && dist[i] <= min) {
+            min = dist[i];
+            minIndex = i;
+          }
+        }
+        return minIndex;
+      }
+
+      let dist = dijkstra(graph, 0);
+      console.log(dist);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { HashTable } from "./hashTable.js"
+      let hashTable = new HashTable();
+      hashTable.put("Gandalf", "gandalf@email.com");
+      hashTable.put("John", "john@email.com");
+      hashTable.put("Tyrion", "tyrion@email.com");
+      console.log(hashTable.get("John"));
+      console.log(hashTable.hashCode("Gandalf"));
+      console.log(hashTable.hashCode("John"));
+      console.log(hashTable.hashCode("Tyrion"));
+    </script>
+  </body>
+</html>

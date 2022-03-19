@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { Graph } from "./graph.js";
+      import { breadthFirstSearch ,BFSMinDistance} from "./breadthFirstSearch.js";
+      import { depthFirstSearch,DFS} from "./depthFirstSearch.js";
+      let graph = new Graph();
+      let myVertices = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+      for (const vertex of myVertices) {
+        graph.addVertex(vertex);
+      }
+      graph.addEdge("A", "B");
+      graph.addEdge("A", "C");
+      graph.addEdge("A", "D");
+      graph.addEdge("C", "D");
+      graph.addEdge("C", "G");
+      graph.addEdge("D", "G");
+      graph.addEdge("D", "H");
+      graph.addEdge("B", "E");
+      graph.addEdge("B", "F");
+      graph.addEdge("E", "I");
+      console.log(graph.toString());
+
+      let callback = (vertex) => {
+        console.log("Visited vertex: " + vertex);
+      };
+
+      // 广度优先搜索
+      breadthFirstSearch(graph, myVertices[0], callback);
+      // 广度的运用，寻找最短路径
+      let object = BFSMinDistance(graph, myVertices[0])
+      console.log(object)
+
+      // 深度优先搜索
+      console.log("深度优先")
+      // 深度的应用
+      depthFirstSearch(graph,callback)
+      let result = DFS(graph)
+      console.log(result)
+      // 拓扑排序
+      let graphDirected = new Graph(true);
+      let myVerticesDirected = ["A", "B", "C", "D", "E", "F"]
+      for (let i = 0; i < myVerticesDirected.length; i++) {
+        const element = myVerticesDirected[i];
+        graphDirected.addVertex(element);
+      }
+      graphDirected.addEdge('A','C')
+      graphDirected.addEdge('A','D')
+      graphDirected.addEdge('B','D')
+      graphDirected.addEdge('B','E')
+      graphDirected.addEdge('C','F')
+      graphDirected.addEdge('F','E')
+      let resultDirected = DFS(graphDirected)
+      // 完成时间的倒序排序便是拓扑顺序
+      console.log(resultDirected)
+    </script>
+  </body>
+</html>

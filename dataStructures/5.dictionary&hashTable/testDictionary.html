@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { Dictionary } from "./dictionary.js"
+      let dictionary = new Dictionary();
+      dictionary.set("Gandalf", "gandalf@email.com");
+      dictionary.set("John", "john@email.com");
+      dictionary.set("Tyrion", "tyrion@email.com");
+      console.log(dictionary.toString());
+      console.log(dictionary.size());
+      console.log(dictionary.isEmpty());
+      console.log(dictionary.get("John"));
+      console.log(dictionary.keyValues());
+      console.log(dictionary.keys());
+      console.log(dictionary.values());
+    </script>
+  </body>
+</html>

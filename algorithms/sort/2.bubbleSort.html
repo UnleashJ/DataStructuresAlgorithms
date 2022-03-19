@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡排序</title>
+</head>
+<body>
+    <script type="module">
+        import { swap, Compare, defaultCompare } from "../../utils/index.js";
+        function bubbleSort(array,compareFn = defaultCompare){
+            let cost = 0
+            for (let i = 0; i < array.length; i++) {
+                cost++
+                for (let j = 0; j < array.length-1; j++) {
+                    cost++
+                    if(compareFn(array[j],array[j+1]) === Compare.BIGGER_THAN){
+                        swap(array,j,j+1)
+                    }  
+                }
+            }
+            console.log(cost)
+        }
+
+        // 改进，内循环中减去外循环中已跑过的轮数
+        function bubbleSort2(array,compareFn = defaultCompare){
+            let cost = 0
+            for (let i = 0; i < array.length; i++) {
+                cost++
+                for (let j = 0; j < array.length-1-i; j++) {
+                    cost++
+                    if(compareFn(array[j],array[j+1]) === Compare.BIGGER_THAN){
+                        swap(array,j,j+1)
+                    }  
+                }
+            }
+            console.log(cost)
+        }
+
+        let array = [5,4,3,2,1]
+        bubbleSort(array)
+        console.log(array)
+    </script>
+</body>
+</html>

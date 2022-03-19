@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { BinarySearchTree } from "./binarySearchTree.js";
+      let bsTree = new BinarySearchTree();
+      bsTree.insert(11);
+      bsTree.insert(2);
+      bsTree.insert(3);
+      bsTree.insert(4);
+      bsTree.insert(17);
+      bsTree.insert(18);
+      console.log(bsTree.insert(19));
+      let r1 = bsTree;
+      console.log(r1);
+
+      let callBack = (value) => console.log(value);
+      //   中序遍历
+      bsTree.inOrderTraverse(callBack);
+      bsTree.preOrderTraverse(callBack);
+      bsTree.postOrderTraverse(callBack);
+
+      console.log(bsTree.min());
+      console.log(bsTree.max());
+      console.log(bsTree.search(3));
+      bsTree.remove(4);
+      let r2 = bsTree;
+      console.log(r2);
+    </script>
+  </body>
+</html>

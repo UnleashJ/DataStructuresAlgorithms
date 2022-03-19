@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>击鼓传化（拍七）-循环队列</title>
+</head>
+<body>
+    <script src="../../dataStructures/queue/queue.js"></script>
+    <script>
+        function hotPotato(elementList,num){
+            let queue = new Queue();
+            // 淘汰者名单
+            let eliminateList = [];
+            for (let i = 0; i < elementList.length; i++) {
+                 queue.enqueue(elementList[i]);
+            }
+
+            while(queue.size()>1){
+                for (let i = 0; i < num; i++) {
+                   queue.enqueue(queue.dequeue())
+                }
+                eliminateList.push(queue.dequeue());
+            }
+
+            return {
+                eliminate:eliminateList,
+                winner:queue.dequeue()
+            }
+        }
+
+        const elementList = ['John','Jack','Camila','Ingrid','Carl']
+        let result = hotPotato(elementList,9)
+        result.eliminate.forEach((item)=>{
+            console.log(`${item} 被淘汰`)
+        })
+        console.log(`胜利者是${result.winner}`)
+        
+    </script>
+</body>
+</html>

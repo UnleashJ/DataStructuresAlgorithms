@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>插入排序</title>
+  </head>
+  <body>
+    <script type="module">
+      import { swap, Compare, defaultCompare } from "../../utils/index.js";
+      function insertSort(array, compareFn = defaultCompare) {
+        for (let i = 1; i < array.length; i++) {
+          let j = i;
+          let temp = array[i];
+          //只有当前项比已排序数组小时，才需要换位
+          if (temp < array[i - 1]) {
+            while (j > 0 && compareFn(temp,array[j-1]) === Compare.LESS_THAN) {
+              array[j] = array[j - 1];
+              j--;
+            }
+            array[j] = temp;
+          }
+        }
+      }
+      let array = [5, 4, 3, 9, 8, 2, 1];
+      insertSort(array);
+      console.log(array);
+    </script>
+  </body>
+</html>
+                    

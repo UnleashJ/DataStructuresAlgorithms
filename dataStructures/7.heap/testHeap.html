@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {MinHeadp} from "./minHeap.js"
+        import {MaxHeap} from "./maxHeap.js"
+        let minHeap = new MinHeadp();
+        
+        minHeap.insert(2)
+        minHeap.insert(3)
+        minHeap.insert(4)
+        minHeap.insert(5)
+        minHeap.insert(9)
+        minHeap.insert(6)
+        minHeap.insert(8)
+        minHeap.insert(29)
+        minHeap.insert(1)
+        
+        console.log(minHeap.extract())
+        console.log(minHeap.heap)
+
+
+        let maxHeap = new MaxHeap();
+        maxHeap.insert(2)
+        maxHeap.insert(3)
+        maxHeap.insert(4)
+        maxHeap.insert(1)
+        maxHeap.insert(5)
+        maxHeap.insert(9)
+        maxHeap.insert(6)
+        maxHeap.insert(8)
+        maxHeap.insert(29)
+
+        console.log(maxHeap.extract())
+        console.log(maxHeap.heap)
+
+    </script>
+</body>
+</html>

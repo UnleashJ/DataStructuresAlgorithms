@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>归并排序</title>
+  </head>
+  <body>
+    <script type="module">
+      import { swap, Compare, defaultCompare } from "../../utils/index.js";
+      //   主函数，拆分
+      function mergeSort(array, compareFn = defaultCompare) {
+        if (array.length > 1) {
+          let middle = Math.floor(array.length / 2);
+          let leftArray = array.slice(0, middle);
+          let rightArray = array.slice(middle, array.length);
+          let l = mergeSort(leftArray, compareFn);
+          let r = mergeSort(rightArray, compareFn);
+          array = merge(l, r, compareFn);
+        }
+        return array;
+      }
+
+      //   合并
+      function merge(l, r, compareFn) {
+        let i = 0;
+        let j = 0;
+        let result = [];
+        while (i < l.length && j < r.length) {
+          result.push(
+            compareFn(l[i], r[j]) === Compare.LESS_THAN ? l[i++] : r[j++]
+          );
+        }
+        return result.concat(i < l.length ? l.slice(i) : r.slice(j));
+      }
+      let array = [5, 4, 3, 9, 8, 2, 1];
+      array = mergeSort(array);
+      console.log(array);
+    </script>
+  </body>
+</html>

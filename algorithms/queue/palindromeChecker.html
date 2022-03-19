@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回文算法</title>
+</head>
+<body>
+    <script src="../../dataStructures/queue/deque.js"></script>
+    <script>
+        // 允许大小写相等
+        function palindromeChecker(aString){
+            if(aString===undefined||aString===null||aString===''){
+                return false
+            }
+
+            let lowerString = aString.toLocaleLowerCase();
+            let deque = new Deque();
+            let isEqual = true
+            for (const char of lowerString) {
+                deque.addBack(char);
+            }
+
+            while(deque.size()>1){
+                let firstChar = deque.removeFront();
+                let lastChar = deque.removeBack();
+                if(firstChar !== lastChar){
+                    isEqual = false;
+                }
+            }
+
+            return isEqual;
+        }
+
+        console.log(palindromeChecker('21312'))
+    </script>
+</body>
+</html>

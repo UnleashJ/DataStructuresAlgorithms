@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testStackArray</title>
+</head>
+<body>
+    <script src="./stackArray.js"></script>
+    <script>
+        let stack = new StackArray();
+        stack.push(0,1,2,3,4);
+        console.log(stack.items)
+        console.log(stack.pop())
+        console.log(stack.peek())
+        console.log(stack.isEmpty())
+        console.log(stack.items)
+        console.log(stack.size())
+        stack.clear()
+        console.log(stack.items)
+    </script>
+</body>
+</html>

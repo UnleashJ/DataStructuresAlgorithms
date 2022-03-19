@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let graph = [
+        [0, 2, 4, 0, 0, 0],
+        [2, 0, 2, 4, 2, 0],
+        [4, 2, 0, 0, 3, 0],
+        [0, 4, 0, 0, 3, 2],
+        [0, 2, 3, 3, 0, 2],
+        [0, 0, 0, 2, 2, 0],
+      ];
+      function getMinDisIndex(dist, visited) {
+        let min = Infinity;
+        let minIndex = -1;
+        for (let i = 0; i < dist.length; i++) {
+          if (visited[i] === false && dist[i] <= min) {
+            min = dist[i];
+            minIndex = i;
+          }
+        }
+        return minIndex;
+      }
+
+      function prim(graph) {
+        let key = []; //保存父节点到该顶点之间权重
+        let visited = [];
+        let parent = [];
+        // 初始化
+        for (let i = 0; i < graph.length; i++) {
+          key[i] = Infinity;
+          visited[i] = false;
+        }
+        key[0] = 0; //原点到自己为0
+        parent[0] = -1; //原点的父节点下标为-1
+        for (let i = 0; i < graph.length; i++) {
+          let minIndex = getMinDisIndex(key, visited);
+          visited[minIndex] = true;
+          for (let j = 0; j < graph.length; j++) {
+            if (
+              !visited[j] &&
+              graph[minIndex][j] !== 0 &&
+              graph[minIndex][j] < key[j]
+            ) {
+              parent[j] = minIndex; //j的父节点的下标是minIndex
+              key[j] = graph[minIndex][j];
+            }
+          }
+        }
+        return {
+          parent,
+          key,
+        };
+      }
+
+      console.log(prim(graph));
+    </script>
+  </body>
+</html>

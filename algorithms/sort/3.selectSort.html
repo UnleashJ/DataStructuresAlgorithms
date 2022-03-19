@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择排序</title>
+  </head>
+  <body>
+    <script type="module">
+      import { swap, Compare, defaultCompare } from "../../utils/index.js";
+      function selectSort(array, compareFn = defaultCompare) {
+        for (let i = 0; i < array.length; i++) {
+          let minIndex = i;
+          for (let j = i + 1; j < array.length; j++) {
+            if (compareFn(array[minIndex], array[j]) === Compare.BIGGER_THAN) {
+              minIndex = j;
+            }
+          }
+          if (minIndex !== i) {
+            swap(array, i, minIndex);
+          }
+        }
+      }
+      let array = [5, 4, 3, 9, 8, 2, 1];
+      selectSort(array);
+      console.log(array);
+    </script>
+  </body>
+</html>

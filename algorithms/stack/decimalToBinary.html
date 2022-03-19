@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>十进制转二进制</title>
+  </head>
+  <body>
+    <script src="../../dataStructures/stack/stackObject.js"></script>
+    <script>
+      // 十进制整数转二进制
+      // decNumber十进制数
+      function decimalToBinary(decNumber) {
+        let remStack = new StackObject();
+        // 避免直接操作decNumber
+        let number = decNumber;
+        let result = "";
+
+        // Math.floor(n) 小于等于n的最大整数
+        while (number > 0) {
+          let rem = Math.floor(number % 2);
+          remStack.push(rem);
+          number = Math.floor(number / 2);
+        }
+        while(!remStack.isEmpty()){
+            result += remStack.pop().toString();
+        }
+        return result;
+      }
+
+      console.log(10,decimalToBinary(10));
+      console.log(8,decimalToBinary(8));
+      console.log(100,decimalToBinary(100));
+      console.log(34,decimalToBinary(34));
+      console.log(56,decimalToBinary(56));
+    </script>
+  </body>
+</html>

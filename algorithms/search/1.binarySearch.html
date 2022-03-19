@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { swap, Compare, defaultCompare } from "../../utils/index.js";
+      function binarySearch(array, searchValye) {
+        // 对数组进行排序（快排）
+        array = quickSort(array, 0, array.length - 1);
+        return search(array, 0, array.length - 1, searchValye);
+      }
+
+      function search(array, low, heigh, searchValye) {
+        if (low > heigh) {
+          return false;
+        }
+        let middleIndex = Math.floor((low + heigh) / 2);
+        let middleValue = array[middleIndex];
+        if (middleValue === searchValye) {
+          return true;
+        } else if (middleValue < searchValye) {
+          return search(array, middleIndex + 1, heigh, searchValye);
+        } else {
+          return search(array, low, middleIndex - 1, searchValye);
+        }
+      }
+
+      // 快速排序算法
+      function quickSort(array, left, right) {
+        if (array.length > 1) {
+          //   选择中间值作为主元
+          let middleIndex = Math.floor((left + right) / 2);
+          let pivot = array[middleIndex]; //主元
+          let i = left;
+          let j = right;
+          while (i <= j) {
+            while (array[i] < pivot) {
+              // 退出循环时，在左边遇到了比配pivot大的值
+              i++;
+            }
+            while (array[j] > pivot) {
+              // 退出循环时，在右边遇到了比配pivot小的值
+              j--;
+            }
+            if (i <= j) {
+              swap(array, i, j); //交换
+              i++;
+              j--;
+            }
+          }
+
+          if (left < i - 1) {
+            quickSort(array, left, i - 1);
+          }
+          if (i < right) {
+            quickSort(array, i, right);
+          }
+        }
+        return array;
+      }
+
+      let array = [5, 6, 7, 8, 9, 1, 2, 3, 4, 10, 100, 101,102];
+      console.log(binarySearch(array, 102));
+    </script>
+  </body>
+</html>

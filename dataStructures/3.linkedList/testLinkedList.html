@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { LinkedList } from "./linkedList.js";
+      let linkedlist = new LinkedList();
+      linkedlist.push(5);
+      linkedlist.push(10);
+      // console.log(linkedlist);
+      // console.log(linkedlist.getElementAt(1));
+      // console.log(linkedlist.removeAt(1));
+      // console.log(linkedlist);
+      linkedlist.push(20);
+      linkedlist.push(30);
+      linkedlist.push(40);
+      linkedlist.push(50);
+      console.log(linkedlist);
+      console.log(linkedlist.indexOf(30));
+      console.log(linkedlist.toString());
+      console.log(linkedlist.getElementAt(linkedlist.size()-1));
+
+    </script>
+  </body>
+</html>
